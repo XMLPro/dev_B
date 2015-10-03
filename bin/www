@@ -5,14 +5,16 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('dev_B:server');
+var debug = require('debug')('chat:server');
 var http = require('http');
+var skio = require('../routes/module/skio.js')
+
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 /**
@@ -20,6 +22,10 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+skio.start();
+skio.socket(server);
+// var io = require('socket.io')(server);
+console.log("comming");
 
 /**
  * Listen on provided port, on all network interfaces.
