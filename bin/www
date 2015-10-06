@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('chat:server');
 var http = require('http');
-var skio = require('../routes/module/skio.js')
+var skio = require('../routes/module/skio.js');
 
 
 /**

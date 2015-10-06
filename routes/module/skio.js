@@ -3,10 +3,10 @@ var skio = {}
 skio.start = function(){
   console.log("test");
 }
-
 skio.socket = function(server){
   var io = require("socket.io").listen(server);
   var userHash = {};
+  var bot = require('../../routes/module/bot.js');
   var rooms = new Array("default");
   var log_for_404 = [];
 
@@ -82,6 +82,15 @@ skio.socket = function(server){
       var roomname = data.room;
       console.log(log);
       log[roomname].push(data);
+      try{
+        data.name = "bot";
+        data.time = new Date().toLocaleTimeString();
+        data.msg = bot.reply(data.msg);
+        data.name = "bot";
+        data.time = new Date().toLocaleTimeString();
+        chat.to(roomname).emit('publish', data);
+      }
+      catch(e){}
     });
 
     socket.on("disconnect", function () {
