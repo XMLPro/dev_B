@@ -40,13 +40,28 @@
       room : 'default'
     }
     function changeroom(){
+      var count = 0;
       var data = {
         LRoom : user.room,
         user : user
       }
       user.room = document.getElementById('rooms').value;
+      $("#msg").empty();
       chat.emit("roomChange", data);
+      console.log("count = " + count);
     }
+    chat.on("push_log",function(log){
+      console.log("--------length-------");
+      console.log(log.length);
+      console.log("--------length-------");
+      t = log;
+      for(var p in log){
+        addMessage(log[p]);
+        console.log(log[p]);
+      }
+      console.log("javascriptはマジ糞");
+      log=null;
+    });
     // 2.イベントに絡ませる関数の定義
     function start(user) {
       console.log(user);
@@ -79,10 +94,10 @@
       textInput.value = '';
     }
     function addMessage (data) {
-      console.log(data);
+      console.log("メッセージ追加" + data);
       var domMeg = document.createElement('div');
       domMeg.setAttribute('class', "message");
-      domMeg.innerHTML = new Date().toLocaleTimeString().split(":")[0]+"時"+ new Date().toLocaleTimeString().split(":")[1]+ "分 " + data.name + "さん：　" + data.msg;;
+      domMeg.innerHTML = data.time.split(":")[0]+"時"+ data.time.split(":")[1]+ "分 " + data.name + "さん：　" + data.msg;;
       msgArea.appendChild(domMeg);
     }
 

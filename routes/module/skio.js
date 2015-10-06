@@ -41,6 +41,9 @@ skio.socket = function(server){
   });
 
 
+  var log={};
+  log["default"]=[];
+
   var chat = io.of('/chat').on("connection", function (socket) {
     console.log("/chat -> 接続待ちです")
     socket.on("connected", function (user) {
@@ -54,6 +57,7 @@ skio.socket = function(server){
       }
       userHash[socket.id] = user.name;
       socket.join("default");
+      socket.emit("push_log",log.default);
       socket.emit("push_room", rooms);
       chat.to("default").emit('publish', push_data);
     });
@@ -67,13 +71,17 @@ skio.socket = function(server){
         msg : pushData.user.name + "さんが"+pushData.user.room+"に入室しました",
         time : new Date().toLocaleTimeString()
       }
-      console.log(data);
-      socket.broadcast.to(data.user.room).emit('publish', data);
+      console.log(log[pushData.user.room]);
+      socket.emit("push_log",log[pushData.user.room]);
+      socket.broadcast.to(pushData.user.room).emit('publish', data);
     })
 
     socket.on("publish", function (data) {
       console.log(data);
       chat.to(data.room).emit('publish', data);
+      var roomname = data.room;
+      console.log(log);
+      log[roomname].push(data);
     });
 
     socket.on("disconnect", function () {
@@ -87,16 +95,19 @@ skio.socket = function(server){
         }
         socket.broadcast.emit("publish",data);
         // io.sockets.emit("publish", data);
+        // log[data.room].push(data);
         delete userHash[socket.id];
       }
     });
 
 
     socket.on("roomCreated", function(roomname){
-      console.log(io);
       rooms.push(roomname);
       socket.broadcast.emit("add_room", roomname);
       socket.emit("add_room", roomname);
+      // log.push(roomname);
+      log[roomname]=[];
+      console.log(log);
       // io.sockets.emit("add_room", roomname);
     });
   });
