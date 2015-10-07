@@ -6,7 +6,12 @@ skio.start = function(){
 skio.socket = function(server){
   var io = require("socket.io").listen(server);
   var userHash = {};
+
+  //botモジュールの読み込み
   var bot = require('../../routes/module/bot.js');
+  //コンストラクタモドキで解体祖解析を不実行にする。
+  bot.cst(false);
+
   var rooms = new Array("default");
   var log_for_404 = [];
 
