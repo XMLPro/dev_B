@@ -87,12 +87,13 @@ skio.socket = function(server){
       var roomname = data.room;
       console.log(log);
       log[roomname].push(data);
+      console.log("dataname"+data.name);
       try{
-        data.name = "bot";
-        data.time = new Date().toLocaleTimeString();
-        data.msg = bot.reply(data.msg);
-        data.name = "bot";
-        data.time = new Date().toLocaleTimeString();
+        var botData = {
+          name: "bot",
+          time: new Date().toLocaleTimeString(),
+          msg : bot.reply(data.msg)
+        }
         chat.to(roomname).emit('publish', data);
       }
       catch(e){}

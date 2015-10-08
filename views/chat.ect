@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
 
   <title>chat unstable</title>
 </head>
 <body>
   <header>
-    <button id="logout">logout</button>
+    <button id="logout" class="btn btn-default btn-xs">logout</button>
   </header>
 
   <select id="rooms" onchange="changeroom();">
     <!--<option value="default">default room</option>-->
   </select>
-  <button onclick="createRoom();">ルームを作る</button>
+  <button class="btn btn-default btn-xs" onclick="createRoom();">ルームを作る</button>
   <br />
   <input type="text" id="msg_input" style="width:200px;" onchange="publishMessage();" />
-  <button onclick="publishMessage();">send</button>
+  <button class="btn btn-default btn-xs" onclick="publishMessage();">send</button>
   <div id="msg"></div>
   <script type="text/javascript" src="/javascripts/client.js"></script>
 </body>
