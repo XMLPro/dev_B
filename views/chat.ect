@@ -58,17 +58,17 @@
 
 
   <br />
-  <select id="rooms" onchange="changeroom();">
-    <!--<option value="default">default room</option>-->
-  </select>
-  <button class="btn btn-default btn-xs" onclick="createRoom();">ルームを作る</button>
+
   <section class="container">
     <div class="row">
+      <select id="rooms" onchange="changeroom();">
+        <!--<option value="default">default room</option>-->
+      </select>
+      <button class="btn btn-default btn-xs" onclick="createRoom();">ルームを作る</button>
+      <button id="logout" class="btn btn-default btn-xs">logout</button>
       <form class="form-inline">
-        <div class="form-control col-xs-12 col-sm-12 col-md-12">
-          <input type="text" id="msg_input"  placeholder="Message" onchange="publishMessage();">
-          <button onclick="publishMessage();">send</button>
-        </div>
+        <input type="text" id="msg_input"  placeholder="Message" onchange="publishMessage();">
+        <button onclick="publishMessage();">send</button>
       </form>
     </div>
   </section>
