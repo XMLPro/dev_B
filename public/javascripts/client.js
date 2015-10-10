@@ -14,8 +14,17 @@ chat.on("add_room", function(roomname){
 $('#logout').on('click', function () {
   console.log('disconnect!!')
   chat.disconnect();
-  location.href = location_obj.href;
+  location.href = "http://" + window.location.href.split('/')[2];
 })
+
+$('#roomCreate').on('click', function () {
+  console.log('')
+  createRoom();
+})
+
+$('#myform').submit(
+  console.log("submitting!!")
+)
 
 var user = {
   name: undefined ,
@@ -90,8 +99,8 @@ function addMessage (data) {
 function createRoom(){
   var roomName = window.prompt("部屋の名前を付けてください。", "");
   chat.emit("roomCreated", roomName);
-
 }
+
 function addRoom(name){
   $("select#rooms").append("<option>"+name+"</option>");
 }
