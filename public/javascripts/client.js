@@ -86,14 +86,16 @@ function publishMessage() {
   textInput.value = '';
 }
 function addMessage (data) {
-  console.log("メッセージ追加" + data);
+  console.log(data);
   var domMeg = document.createElement('div');
   domMeg.setAttribute('class', "message panel panel-primary");
   domMeg.innerHTML =  "<div class='panel-heading'><h3 class='panel-title'>" + data.time.split(":")[0]+"時"+ data.time.split(":")[1]+ "分 " +
    data.name + "さん：　" + "</h3></div>" +
   "<div class='panel-body'>"
     + data.msg + "</div>";
-  msgArea.appendChild(domMeg);
+  console.log(data.name);
+  msgArea.insertBefore(domMeg, msgArea.firstChild);
+  // msgArea.appendChild(domMeg);
 }
 
 function createRoom(){
