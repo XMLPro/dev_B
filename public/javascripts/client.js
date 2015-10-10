@@ -11,6 +11,12 @@ chat.on("add_room", function(roomname){
   addRoom(roomname);
 })
 
+$('#logout').on('click', function () {
+  console.log('disconnect!!')
+  chat.disconnect();
+  location.href = location_obj.href;
+})
+
 var user = {
   name: undefined ,
   id: undefined ,
@@ -37,7 +43,6 @@ chat.on("push_log",function(log){
     addMessage(log[p]);
     console.log(log[p]);
   }
-  console.log("javascriptはマジ糞");
   log=null;
 });
 // 2.イベントに絡ませる関数の定義
@@ -77,7 +82,7 @@ function addMessage (data) {
   domMeg.setAttribute('class', "message panel panel-primary");
   domMeg.innerHTML =  "<div class='panel-heading'><h3 class='panel-title'>" + data.time.split(":")[0]+"時"+ data.time.split(":")[1]+ "分 " +
    data.name + "さん：　" + "</h3></div>" +
-  "<div class='panel-body'>" 
+  "<div class='panel-body'>"
     + data.msg + "</div>";
   msgArea.appendChild(domMeg);
 }
