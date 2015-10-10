@@ -74,8 +74,11 @@ function publishMessage() {
 function addMessage (data) {
   console.log("メッセージ追加" + data);
   var domMeg = document.createElement('div');
-  domMeg.setAttribute('class', "message");
-  domMeg.innerHTML = data.time.split(":")[0]+"時"+ data.time.split(":")[1]+ "分 " + data.name + "さん：　" + data.msg;;
+  domMeg.setAttribute('class', "message panel panel-primary");
+  domMeg.innerHTML =  "<div class='panel-heading'><h3 class='panel-title'>" + data.time.split(":")[0]+"時"+ data.time.split(":")[1]+ "分 " +
+   data.name + "さん：　" + "</h3></div>" +
+  "<div class='panel-body'>" 
+    + data.msg + "</div>";
   msgArea.appendChild(domMeg);
 }
 

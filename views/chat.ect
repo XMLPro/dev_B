@@ -9,22 +9,51 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
   <script src="/socket.io/socket.io.js"></script>
 
   <title>chat unstable</title>
 </head>
 <body>
-  <header>
-    <button id="logout" class="btn btn-default container btn-xs">logout</button>
-  </header>
+  <!-- <header class="container">
+    <button id="logout" class="btn btn-default btn-xs">logout</button>
+  </header> -->
 
-  <select id="rooms" onchange="changeroom();">
-    <!--<option value="default">default room</option>-->
-  </select>
-  <button class="btn btn-default btn-xs" onclick="createRoom();">ルームを作る</button>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <form class="navbar-form navbar-left" role="search">
+          <select id="rooms" onchange="changeroom();">
+            <!--<option value="default">default room</option>-->
+          </select>
+          <button class="btn btn-default btn-xs" onclick="createRoom();">ルームを作る</button>
+          <div class="form-group">
+            <input type="text" id="msg_input" class="form-control" placeholder="Message" onchange="publishMessage();">
+          </div>
+          <button type="submit" class="btn btn-default" onclick="publishMessage();">send</button>
+        </form>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">logout</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
   <br />
-  <input type="text" id="msg_input" style="width:200px;" onchange="publishMessage();" />
-  <button class="btn btn-default btn-xs" onclick="publishMessage();">send</button>
   <div id="msg"></div>
   <script type="text/javascript" src="/javascripts/client.js"></script>
 </body>
