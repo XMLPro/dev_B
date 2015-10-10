@@ -64,8 +64,12 @@
   <button class="btn btn-default btn-xs" onclick="createRoom();">ルームを作る</button>
   <section class="container">
     <div class="row">
-      <input type="text" id="msg_input" class="form-control col-xs-2 col-sm-2 col-md-2" placeholder="Message" onchange="publishMessage();">
-      <button class="btn btn-default col-xs-4 col-sm-4 col-md-4" onclick="publishMessage();">send</button>
+      <form class="form-inline">
+        <div class="form-control col-xs-12 col-sm-12 col-md-12">
+          <input type="text" id="msg_input"  placeholder="Message" onchange="publishMessage();">
+          <button onclick="publishMessage();">send</button>
+        </div>
+      </form>
     </div>
   </section>
 
