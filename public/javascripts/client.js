@@ -11,20 +11,20 @@ chat.on("add_room", function(roomname){
   addRoom(roomname);
 })
 
-$('#logout').on('click', function () {
-  console.log('disconnect!!')
-  chat.disconnect();
-  location.href = "http://" + window.location.href.split('/')[2];
-})
+//$('#logout').on('click', function () {
+//  console.log('disconnect!!')
+//  chat.disconnect();
+//  location.href = "http://" + window.location.href.split('/')[2];
+//})
 
 $('#roomCreate').on('click', function () {
   console.log('')
   createRoom();
 })
 
-$('#myform').submit(
-  console.log("submitting!!")
-)
+// $('#myform').submit(
+//   console.log("submitting!!")
+// )
 
 var user = {
   name: undefined ,
@@ -106,6 +106,7 @@ function createRoom(){
 function addRoom(name){
   $("select#rooms").append("<option>"+name+"</option>");
 }
+
 var msgArea = document.getElementById("msg");
 user.name = window.prompt("あなたの名前を入力","");
 start(user);
