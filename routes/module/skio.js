@@ -94,7 +94,7 @@ skio.socket = function(server){
           time: new Date().toLocaleTimeString(),
           msg : bot.reply(data.msg)
         }
-        chat.to(roomname).emit('publish', data);
+        chat.to(roomname).emit('publish', botData);
       }
       catch(e){}
     });

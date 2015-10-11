@@ -93,7 +93,7 @@ function addMessage (data) {
    data.name + "さん：　" + "</h3></div>" +
   "<div class='panel-body'>"
     + data.msg + "</div>";
-  console.log(data.name);
+  console.log(data);
   msgArea.insertBefore(domMeg, msgArea.firstChild);
   // msgArea.appendChild(domMeg);
 }
