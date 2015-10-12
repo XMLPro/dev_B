@@ -23,13 +23,29 @@ bot.reply = function(msg){
   if(analysis_sw === true)
     bot.MAnalysis(msg);
 
-  if(msg === "こんにちは"){
-    return "こんにちは";
-  }else if(msg === "こんばんわ"){
-    return "さようなら";
-  }else{
-    throw new Error("Exception");
-  }
+  switch (msg){
+      case "こんにちは":
+        return "こんにちは"
+        break;
+      case "こんばんは":
+        return "こんばんは"
+        break;
+      case "単位落としそうです":
+        return "がんばってください"
+        break;
+      default:
+        throw new Error("Exception");
+      }
+  
+  // if(msg === "こんにちは"){
+  //   return "こんにちは";
+  // }else if(msg === "こんばんわ"){
+  //   return "さようなら";
+  // }else if(msg === "今日の天気は？"){
+  //   return "多分晴れ"
+  // }else{
+  //   throw new Error("Exception");
+  // }
 };
 
 //形態素解析する関数。引数で解析したい文字列を引数として渡すとコンソールで出力。
