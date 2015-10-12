@@ -56,7 +56,7 @@ skio.socket = function(server){
       console.log("connected: "+ socket.id);
       var msg = user.name + "さんが入室しました";
       var push_data={
-        name : 'System',
+        name : 'こうかさいぼっと',
         msg : msg,
         time : new Date().toLocaleTimeString()
       }
@@ -64,6 +64,9 @@ skio.socket = function(server){
       socket.join("default");
       socket.emit("push_log",log.default);
       socket.emit("push_room", rooms);
+      chat.to("default").emit('publish', push_data);
+      push_data.msg = "こんにちは！！！";
+      push_data.time= new Date().toLocaleTimeString();
       chat.to("default").emit('publish', push_data);
     });
 
